@@ -14,9 +14,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Importa y usa tus rutas
-app.use('/api/clients', clientRoutes);
+app.use('/clients', clientRoutes);
 
 // Inicia el servidor
 app.listen(PORT, () => {
-  console.log('Server running on http://localhost:8080');
+  console.log(`Server running on http://localhost:${PORT}`);
 });
