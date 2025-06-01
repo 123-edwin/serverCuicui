@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Factura {{Serie}}-{{Folio}}</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+    }
+
+    th {
+      background: #f5f5f5;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    section {
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="{{LogoEmpresa}}" alt="Logo empresa" style="width: 120px; height: auto;" />
+    <div style="text-align: right;">
+      <h1 style="margin: 0;">Factura {{Serie}}-{{Folio}}</h1>
+      <p style="margin: 0;">
+        Fecha: {{Fecha}}<br>
+        Tipo de comprobante: {{#if (eq TipoComprobante "P")}}Pago{{else}}Otro{{/if}}
+      </p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Datos del Emisor</h2>
+    <p>
+      Nombre: {{NombreEmisor}}<br>
+      RFC: {{RfcEmisor}}<br>
+      Régimen Fiscal: {{RegimenEmisor}}<br>
+      Lugar de expedición: {{LugarExpedicion}}
+    </p>
+  </section>
+
+  <section>
+    <h2>Datos del Receptor</h2>
+    <p>
+      Nombre: {{NombreReceptor}}<br>
+      RFC: {{RfcReceptor}}<br>
+      Régimen Fiscal: {{RegimenReceptor}}<br>
+      Domicilio Fiscal: {{DomicilioFiscalReceptor}}<br>
+      Uso CFDI: {{UsoCFDI}}
+    </p>
+  </section>
+
+  <section>
+    <h2>Pago relacionado</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Documento</th>
+          <th>Parcialidad</th>
+          <th>Saldo Anterior</th>
+          <th>Importe Pagado</th>
+          <th>Saldo Insoluto</th>
+          <th>Forma de Pago</th>
+          <th>Moneda</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{IdDocumento}}</td>
+          <td class="right">{{NumParcialidad}}</td>
+          <td class="right">{{SaldoAnterior}}</td>
+          <td class="right">{{ImpPagado}}</td>
+          <td class="right">{{ImpSaldoInsoluto}}</td>
+          <td>{{FormaPago}}</td>
+          <td>{{Moneda}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <img src="{{QRcode}}" alt="QR CFDI" style="width: 120px; height: 120px;" />
+    <p>
+      <small>
+        Folio Fiscal (UUID): {{UUID}}<br>
+        Certificado SAT: {{NoCertificadoSAT}}<br>
+        Proveedor de Certificación: {{RfcProvCertif}}
+      </small>
+    </p>
+    <p>
+      <small>
+        Sello CFDI: {{SelloCFD}}<br>
+        Sello SAT: {{SelloSAT}}
+      </small>
+    </p>
+  </footer>
+
+</body>
+
+</html>

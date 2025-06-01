@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import clientRoutes from './routes/clientRoutes.js';
+import billRoutes from './routes/billRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,12 +10,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 // Opciones de CORS
 const corsOptions = {
-  origin: 'https://123-edwin.github.io'
+  origin: 'http://localhost:5173'
 };
 app.use(cors(corsOptions));
 
-// Importa y usa tus rutas
+// Importar rutas
 app.use('/clients', clientRoutes);
+app.use('/bill', billRoutes);
 
 // Inicia el servidor
 app.listen(PORT, () => {

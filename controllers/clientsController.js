@@ -19,7 +19,7 @@ export async function getOnlyClient(req, res) {
 // Obtener todos los clientes
 export async function getClients(req, res) {
     try {
-        const result = await pool.query('SELECT * FROM clientes');
+        const result = await pool.query('SELECT * FROM clientes ORDER BY id ASC');
         res.json(result.rows);
     } catch (err) {
         console.error(err);
